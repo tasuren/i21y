@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "i21y"
+version = "0.1.0"
+description = "The library for i18n support."
+authors = ["Takagi Tasuku <tasuren@outlook.jp>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+typing-extensions = "4.4.*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
