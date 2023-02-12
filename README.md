@@ -3,7 +3,7 @@
 i21y (a.k.a internationalization.py) is library for support i18n in Python. It is easy to use.
 
 **WARNING**  
-It is still in the pilot phase.
+It is still in beta.
 
 ## Installation
 Normal: `pip install i21y`  
