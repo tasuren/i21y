@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "i21y"
-version = "0.1.0b2"
+version = "0.1.0b3"
 description = "The library for i18n support."
 authors = ["Takagi Tasuku <tasuren@outlook.jp>"]
 license = "MIT"
