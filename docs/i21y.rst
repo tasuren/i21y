@@ -1,0 +1,53 @@
+i21y package
+============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   i21y.loaders
+
+Submodules
+----------
+
+i21y.abc module
+---------------
+
+.. automodule:: i21y.abc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+i21y.error module
+-----------------
+
+.. automodule:: i21y.error
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+i21y.translator module
+----------------------
+
+.. automodule:: i21y.translator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+i21y.utils module
+-----------------
+
+.. automodule:: i21y.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: i21y
+   :members:
+   :undoc-members:
+   :show-inheritance:

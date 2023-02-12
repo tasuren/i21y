@@ -1,0 +1,37 @@
+i21y.loaders package
+====================
+
+Submodules
+----------
+
+i21y.loaders.file\_ module
+--------------------------
+
+.. automodule:: i21y.loaders.file_
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+i21y.loaders.json module
+------------------------
+
+.. automodule:: i21y.loaders.json
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+i21y.loaders.yaml module
+------------------------
+
+.. automodule:: i21y.loaders.yaml
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: i21y.loaders
+   :members:
+   :undoc-members:
+   :show-inheritance:

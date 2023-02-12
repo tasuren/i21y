@@ -1,4 +1,4 @@
-from i21y import locale_str
+from src.i21y import locale_str
 
 
 BASE = locale_str("aiueo")

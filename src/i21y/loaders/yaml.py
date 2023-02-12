@@ -17,6 +17,9 @@ from .file_ import Loader as FileLoader, LocaleFile
 
 
 class Loader(FileLoader):
+    """Loader implemented to load YAML files.
+    To use it, you must have ``pyyaml`` or ``i21y[yaml]`` installed.
+    The arguments of constructor are same as :class:`.file_.Loader`."""
 
     EXTENSIONS = (".yml", ".yaml")
 

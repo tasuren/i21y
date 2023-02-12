@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "i21y"
-version = "0.1.0a0"
+version = "0.1.0b0"
 description = "The library for i18n support."
 authors = ["Takagi Tasuku <tasuren@outlook.jp>"]
 license = "MIT"
@@ -12,7 +12,14 @@ classifiers = [
     "Topic :: Software Development :: Internationalization",
     "Typing :: Typed"
 ]
+packages = [{ include = "i21y", from = "src" }]
 include = ["i21y/py.typed"]
+
+[tool.poetry.urls]
+Source = "https://github.com/tasuren/i21y"
+Documentation = "https://i21y.readthedocs.io/"
+Donate = "https://www.buymeacoffee.com/tasuren"
+Chat = "https://discord.gg/kfMwZUyGFG"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -22,6 +29,11 @@ orjson = { version = "^3.8.6", optional = true }
 [tool.poetry.extras]
 yaml = ["pyyaml"]
 fast_json = ["orjson"]
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "*"
+sphinx-intl = "*"
+myst-parser = "*"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.1.2"
