@@ -131,6 +131,9 @@ dmypy.json
 # poetry
 poetry.lock
 
+# General
+.DS_Store
+
 # Text Editor
 .vscode
 *.code-workspace
