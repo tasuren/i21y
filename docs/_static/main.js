@@ -1,1 +1,3 @@
-window.addEventListener("load", () => new Darkmode({label: "🌓"}).showWidget());
+window.addEventListener("load", () => new Darkmode(
+    {label: "🌓", right: "unset", left: "32px"}
+).showWidget());
