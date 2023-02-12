@@ -5,6 +5,14 @@ description = "The library for i18n support."
 authors = ["Takagi Tasuku <tasuren@outlook.jp>"]
 license = "MIT"
 readme = "README.md"
+keywords = ["i18n"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Internationalization",
+    "Typing :: Typed"
+]
+include = ["i21y/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

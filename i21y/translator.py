@@ -4,7 +4,7 @@ from __future__ import annotations
 
 __all__ = ("Translator",)
 
-from typing import TYPE_CHECKING, TypeVar, Generic, Any
+from typing import TYPE_CHECKING, TypeVar, Generic, Any, cast
 
 if TYPE_CHECKING:
     from .abc import Loader
@@ -14,7 +14,8 @@ if TYPE_CHECKING:
 LoaderT = TypeVar("LoaderT", bound="Loader")
 class Translator(Generic[LoaderT]):
     def __init__(self, loader: LoaderT | Loader, default_locale: str = "en") -> None:
-        self.loader, self.default_locale = loader, default_locale
+        self.loader: LoaderT = cast(LoaderT, loader)
+        self.default_locale = default_locale
 
     def format_(self, text: str, *args: Any, **kwargs: Any) -> str:
         return text.format(*args, **kwargs)

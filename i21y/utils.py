@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import TypeVar, Any, overload
-
-
 __all__ = ("Undefined", "locale_str")
+
+from typing import TypeVar, Any, overload
 
 
 class Undefined:
@@ -55,6 +54,9 @@ class locale_str:
 
     def __floordiv__(self, other: str) -> str:
         return self.join_raw(other)
+
+    def __getattr__(self: SelfT, another: str) -> SelfT:
+        return self.join(another)
 
     def __eq__(self, another: locale_str) -> bool:
         return self.key == another.key

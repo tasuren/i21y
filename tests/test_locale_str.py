@@ -9,5 +9,6 @@ RIGHT = BASE / KAGYO
 LEFT = BASE / str(KAGYO)
 assert LEFT == RIGHT
 assert str(LEFT) == str(RIGHT)
+assert LEFT.test == RIGHT.test
 
 assert BASE // "kakikukeko" == "aiueo.kakikukeko"
