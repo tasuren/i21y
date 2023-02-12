@@ -8,7 +8,7 @@ It is still in beta.
 ## Installation
 Normal: `pip install i21y`  
 YAML supported: `pip install i21y[yaml]`  
-Fast JSON (orjson) supported: `pip install i21y[orjson]`
+Fast JSON (orjson) supported: `pip install i21y[fast-json]`
 
 ## Example
 ```python
