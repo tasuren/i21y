@@ -18,7 +18,7 @@ class Loader(ABC):
         self, locale: str, key: str,
         default: SearchT | type[Undefined] = Undefined
     ) -> str | SearchT:
-        "Implementation of :meth:`abc.Loader.search`. Arguments is same as ``.search``."
+        "Implementation of :meth:`.abc.Loader.search`. Arguments is same as ``.search``."
 
     @overload
     def search(

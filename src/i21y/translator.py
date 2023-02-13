@@ -51,7 +51,7 @@ class Translator(Generic[LoaderT]):
             .. code-block:: python
 
                 t = Translator()
-                print("responses.not_found"))
+                print(t("responses.not_found"))
 
         Raises:
             TranslationNotFound: If translation is not found, this function will raise it."""
