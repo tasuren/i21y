@@ -66,24 +66,26 @@ class locale_str:
     @overload
     def join(
         self: ..., *other: str | locale_str,
-        cls: type[AdtnlClsT] = None
+        cls: type[AdtnlClsT] = None, **extras: Any
     ) -> AdtnlClsT: ...
     @overload
     def join(
         self: SelfT, *other: str | locale_str,
-        cls: None = None
+        cls: None = None, **extras: Any
     ) -> SelfT: ...
     def join(
         self: SelfT, *other: str | locale_str,
-        cls: type[AdtnlClsT] | None = None
+        cls: type[AdtnlClsT] | None = None, **extras: Any
     ) -> SelfT | AdtnlClsT:
         """A version of :meth:`locale_str.join_raw` that returns the instance of the class that self.
 
         Args:
-            *other: Target strings."""
+            *other: Target strings.
+            cls: The :class:`.locale_str` used to create the instance.
+            **extras: The value to pass to the ``extras`` argument of the constructor of :class:`.locale_str`."""
         cls = cls or self.__class__ # type: ignore
         assert cls is not None
-        return cls(self.join_raw(*other))
+        return cls(self.join_raw(*other), **extras)
 
     def __truediv__(self: SelfT, other: LocaleStr | Iterable[LocaleStr]) -> SelfT:
         if isinstance(other, str | locale_str):

@@ -12,3 +12,5 @@ assert str(LEFT) == str(RIGHT)
 assert LEFT.test == RIGHT.test
 
 assert BASE // "kakikukeko" == "aiueo.kakikukeko"
+
+assert BASE.join("test", a="b").extras["a"] == "b"
