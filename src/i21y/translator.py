@@ -30,11 +30,12 @@ class Translator(Generic[LoaderT]):
             text: Target text.
             *args: The arguments to be passed to ``text.format``.
             **kwargs: The keyword arguments to be passed to ``text.format``."""
-        return text.format(*args, **kwargs)
+        return text.format(*args, **kwargs) if kwargs.pop \
+            ("__i21y_special_kwarg_do_format", True) else text
 
     def translate(
-        self, key: str | locale_str, *args: Any,
-        locale: str | None = None, **kwargs: Any
+        self, key: str | locale_str, *args: Any, locale: str | None = None,
+        do_format: bool = True, **kwargs: Any
     ) -> str:
         """Do translation.
         The translation will be formated by :meth:`Translator.format_`.
@@ -43,6 +44,7 @@ class Translator(Generic[LoaderT]):
             key: It will be used for searching text.
             *args: The arguments to be passed to :meth:`.format_`.
             locale: The locale of text.
+            do_format: Whether or not to perform formatting.
             **kwargs: The arguments to be passed to :meth:`.format_`.
 
         Note:
@@ -55,6 +57,7 @@ class Translator(Generic[LoaderT]):
 
         Raises:
             TranslationNotFound: If translation is not found, this function will raise it."""
+        kwargs["__i21y_special_kwarg_do_format"] = do_format
         return self.format_(self.loader.search(
             locale or self.default_locale,
             key if isinstance(key, str) else str(key)

@@ -10,11 +10,13 @@ def do_test_translator(t: Translator[Loader]) -> None:
     from src.i21y.utils import locale_str
 
     BASE = locale_str("wow.a")
-    assert t(BASE / "b") == "Layor B"
-    assert t(BASE / "b", locale="ja") == "B階層"
+    assert t(BASE.b) == "Layor B"
+    assert t(BASE.b, locale="ja") == "B階層"
 
-    assert t(BASE / "c.d", "test_arg") == "Layor D: test_arg"
-    assert t(BASE / "c.d", "test_arg", locale="ja") == "D階層：test_arg"
+    assert t(BASE.c.d, "test_arg") == "Layor D: test_arg"
+    assert t(BASE.c.d, "test_arg", locale="ja") == "D階層：test_arg"
+
+    assert t(BASE.c.d, do_format=False) == r"Layor D: {}"
 
 
 do_test_translator(Translator(Loader("tests/locale", False, False)))
