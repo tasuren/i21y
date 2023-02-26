@@ -87,6 +87,14 @@ class locale_str:
         assert cls is not None
         return cls(self.join_raw(*other), **extras)
 
+    def update_extras(self: SelfT, **extras: Any) -> SelfT:
+        """Function to gracefully update :attr:`.extras`.
+
+        Args:
+            extras: The extras to override."""
+        self.extras.update(**extras)
+        return self
+
     def __truediv__(self: SelfT, other: LocaleStr | Iterable[LocaleStr]) -> SelfT:
         if isinstance(other, str | locale_str):
             other = (other,)

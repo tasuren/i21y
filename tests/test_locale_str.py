@@ -14,3 +14,4 @@ assert LEFT.test == RIGHT.test
 assert BASE // "kakikukeko" == "aiueo.kakikukeko"
 
 assert BASE.join("test", a="b").extras["a"] == "b"
+assert BASE.test.update_extras(a="b").extras["a"] == "b"
