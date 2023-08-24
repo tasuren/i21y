@@ -20,11 +20,11 @@ class locale_str:
 
     **Operations**
 
-    .. describe:: x / y
+    .. describe:: x + y
 
         It is alias for :meth:`locale_str.join`.
         y can be specified str or Iterable, and y will be passed to :meth:`.join` as arguments.
-    .. describe:: x // y
+    .. describe:: x & y
 
         It is alias for :meth:`locale_str.join_raw`.
         y can be specified str or Iterable, and y will be passed to :meth:`.join_raw` as arguments.
@@ -40,8 +40,7 @@ class locale_str:
         **extras: It is for some data.
 
     Notes:
-        It is alias for :meth:`locale_str.join`.
-        Attribute will be used as the argument of :meth:`.join`."""
+        Attribute can be used as the argument of :meth:`.join`."""
 
     def __init__(self, key: Any, **extras: Any) -> None:
         self.key, self.extras = key, extras
@@ -100,12 +99,12 @@ class locale_str:
         self.extras.update(**extras)
         return self
 
-    def __truediv__(self: SelfT, other: LocaleStr | Iterable[LocaleStr]) -> SelfT:
+    def __add__(self: SelfT, other: LocaleStr | Iterable[LocaleStr]) -> SelfT:
         if isinstance(other, str | locale_str):
             other = (other,)
         return self.join(*other)
 
-    def __floordiv__(self, other: str | Iterable[str]) -> str:
+    def __and__(self, other: str | Iterable[str]) -> str:
         if isinstance(other, str):
             other = (other,)
         return self.join_raw(*other)
