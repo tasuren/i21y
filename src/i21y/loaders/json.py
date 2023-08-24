@@ -1,5 +1,3 @@
-"i21y Loaders - Json"
-
 __all__ = ("Loader",)
 
 from pathlib import PurePath

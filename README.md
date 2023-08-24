@@ -2,12 +2,18 @@
 # i21y
 i21y (a.k.a internationalization.py) is library for support i18n in Python. It is easy to use.
 
+**Features:**
+- Zero dependencies by default
+- Simple design
+- Tools to Simplify Keys
+
 ## Installation
 Normal: `pip install i21y`  
-YAML supported: `pip install i21y[yaml]`  
-Fast JSON (orjson) supported: `pip install i21y[fast-json]`
+YAML support: `pip install i21y[yaml]`  
+Fast JSON (by orjson) support: `pip install i21y[fast-json]`
 
 ## Example
+### Basic
 ```python
 from i21y import Translator
 from i21y.loaders.json import Loader
@@ -15,6 +21,15 @@ from i21y.loaders.json import Loader
 t = Translator(Loader("locale"))
 
 assert t("main.responses.not_found", locale="ja") == "見つからなかった。"
+```
+### Advanced
+```python
+from i21y import locale_str
+
+LONG_KEY = locale_str("very.long.locale.key.yeah_so_long")
+print(LONG_KEY.but_easy_to_use) # very.long.locale.key.yeah_so_long.but_easy_to_use
+
+assert t(LONG_KEY.but_easy_to_use, locale="ja") == "とても長いキーでも簡単に使える。"
 ```
 
 ## Documentation

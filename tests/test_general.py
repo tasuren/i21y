@@ -6,7 +6,6 @@ def do_test_translator(t: Translator[Loader]) -> None:
     assert t("general.main") == "main"
     assert t("general.main", locale="ja") == "メイン"
 
-
     from src.i21y.utils import locale_str
 
     BASE = locale_str("wow.a")

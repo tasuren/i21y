@@ -1,5 +1,3 @@
-"i21y - Locale String"
-
 from __future__ import annotations
 
 __all__ = ("Undefined", "locale_str")
@@ -15,6 +13,8 @@ class Undefined:
 LocaleStr: TypeAlias = "str | locale_str"
 SelfT = TypeVar("SelfT", bound="locale_str")
 AdtnlClsT = TypeVar("AdtnlClsT", bound="locale_str")
+
+
 class locale_str:
     """This class is designed to allow for the graceful creation of keys to translations.
 
@@ -65,25 +65,30 @@ class locale_str:
 
     @overload
     def join(
-        self: ..., *other: str | locale_str,
-        cls: type[AdtnlClsT] = None, **extras: Any
-    ) -> AdtnlClsT: ...
+        self: ..., *other: str | locale_str, cls: type[AdtnlClsT], **extras: Any
+    ) -> AdtnlClsT:
+        ...
+
     @overload
     def join(
-        self: SelfT, *other: str | locale_str,
-        cls: None = None, **extras: Any
-    ) -> SelfT: ...
+        self: SelfT, *other: str | locale_str, cls: None = None, **extras: Any
+    ) -> SelfT:
+        ...
+
     def join(
-        self: SelfT, *other: str | locale_str,
-        cls: type[AdtnlClsT] | None = None, **extras: Any
+        self: SelfT,
+        *other: str | locale_str,
+        cls: type[AdtnlClsT] | None = None,
+        **extras: Any,
     ) -> SelfT | AdtnlClsT:
         """A version of :meth:`locale_str.join_raw` that returns the instance of the class that self.
 
         Args:
             *other: Target strings.
             cls: The :class:`.locale_str` used to create the instance.
-            **extras: The value to pass to the ``extras`` argument of the constructor of :class:`.locale_str`."""
-        cls = cls or self.__class__ # type: ignore
+            **extras: The value to pass to the ``extras`` argument of the constructor of :class:`.locale_str`.
+        """
+        cls = cls or self.__class__  # type: ignore
         assert cls is not None
         return cls(self.join_raw(*other), **extras)
 

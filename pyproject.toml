@@ -1,10 +1,13 @@
-[tool.poetry]
+[project]
 name = "i21y"
-version = "0.1.2"
-description = "The library for i18n support."
-authors = ["Takagi Tasuku <tasuren@outlook.jp>"]
-license = "MIT"
+description = "The simple library for i18n support."
+authors = [
+    {name = "Takagi Tasuku", email = "tasuren@outlook.jp"},
+]
+dependencies = []
+requires-python = ">=3.11"
 readme = "README.md"
+license = {file = "LICENSE"}
 keywords = ["i18n"]
 classifiers = [
     "Programming Language :: Python :: 3.11",
@@ -12,33 +15,40 @@ classifiers = [
     "Topic :: Software Development :: Internationalization",
     "Typing :: Typed"
 ]
-packages = [{ include = "i21y", from = "src" }]
 include = ["i21y/py.typed"]
+dynamic = ["version"]
 
-[tool.poetry.urls]
+[tool.pdm]
+version = {source = "file", path = "src/i21y/__init__.py"}
+
+[project.urls]
 Source = "https://github.com/tasuren/i21y"
 Documentation = "https://i21y.readthedocs.io/"
 Donate = "https://www.buymeacoffee.com/tasuren"
 Chat = "https://discord.gg/kfMwZUyGFG"
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pyyaml = { version = "^6.0", optional = true }
-orjson = { version = "^3.8.6", optional = true }
+[optional-dependencies]
+yaml = ["pyyaml~=6.0"]
+fast_json = ["orjson~=3.8.6"]
 
-[tool.poetry.extras]
-yaml = ["pyyaml"]
-fast_json = ["orjson"]
-
-[tool.poetry.group.docs.dependencies]
-sphinx = "*"
-sphinx-intl = "*"
-myst-parser = "*"
-
-[tool.poetry.group.test.dependencies]
-pytest = "^7.1.2"
-pyyaml = "^6.0"
+[tool.pdm.dev-dependencies]
+test = [
+    "pytest~=7.1.2",
+    "pyyaml~=6.0",
+    "orjson~=3.8.6"
+]
+doc = [
+    "sphinx",
+    "sphinx-intl",
+    "myst-parser"
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pyright]
+typingCheckMode = "basic"
+
+[tool.black]
+target-version = ['py311']

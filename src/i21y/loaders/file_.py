@@ -1,5 +1,3 @@
-"i21y Loaders - File"
-
 from __future__ import annotations
 
 __all__ = ("LocaleFile", "Loader")
@@ -20,6 +18,8 @@ from ..utils import Undefined
 
 
 DataDict: TypeAlias = dict[str, "str | DataDict"]
+
+
 class LocaleFile:
     """Class for handling translation data file.
 
@@ -31,8 +31,7 @@ class LocaleFile:
     def __init__(self, parent: Loader, locale: str, path: PurePath) -> None:
         self.parent, self.path, self.data = parent, path, DataDict()
         self.locale, self.key = locale, ".".join(
-            self.path.parts[parent.path_size+1:-1]
-            + (self.path.stem,)
+            self.path.parts[parent.path_size + 1 : -1] + (self.path.stem,)
         )
 
     def get(self, key: str | Iterable[str]) -> str | None:
@@ -42,6 +41,7 @@ class LocaleFile:
             key: The key to search for translations."""
         if isinstance(key, str):
             key = key.split(".")
+
         tentative, result = None, None
         for partial in key:
             if result is not None:
@@ -49,16 +49,19 @@ class LocaleFile:
                 # 例えば、`a.b.c`で文字列があるとき、`a.b.c.d.e`のeまでアクセスがすることができてしまう。
                 # ましてや、`a.b.c`の文字列が返却される。これはよろしくないので、わざと一度イテレートしてからreturnをして、呼び出し元にエラーを認識してもらう。
                 return
+
             try:
                 if tentative is None:
                     tentative = self.data[partial]
                 else:
                     assert not isinstance(tentative, str)
                     tentative = tentative[partial]
+
                 if isinstance(tentative, str):
                     result = tentative
             except KeyError:
                 break
+
         if result is not None:
             return result
 
@@ -105,13 +108,15 @@ class Loader(AbcLoader):
         preload_cache: Whether to run :meth:`.make_cache` when initializing the instance.
         use_cache_realtime: Whether to search and collect caches when translating.
         do_not_search_file: Whether to prevent file searches from being performed.
-            If you do not want IO processing during translation, you can set this to ``True``."""
+            If you do not want IO processing during translation, you can set this to ``True``.
+    """
 
     EXTENSIONS = tuple[str, ...]()
     "A tuple of supported file extensions. This must not be empty."
 
     def __init__(
-        self, path: str | PurePath,
+        self,
+        path: str | PurePath,
         preload_cache: bool = True,
         use_cache_realtime: bool = True,
         do_not_search_file: bool = False,
@@ -129,7 +134,9 @@ class Loader(AbcLoader):
             self.make_cache()
 
         if not self.EXTENSIONS:
-            raise NotImplementedError("The file extension is not set. This indicates that this class is not properly implemented.")
+            raise NotImplementedError(
+                "The file extension is not set. This indicates that this class is not properly implemented."
+            )
 
     def load(self, path: PurePath) -> LocaleFile:
         """Load the file.
@@ -146,6 +153,7 @@ class Loader(AbcLoader):
             for file_name in files:
                 if not file_name.endswith(self.EXTENSIONS):
                     continue
+
                 lf = self.load(PurePath(root).joinpath(file_name))
                 self.caches.file_[lf.locale][lf.key] = lf
 
@@ -157,7 +165,9 @@ class Loader(AbcLoader):
             locale: The locale of translations."""
         return self.path.joinpath(locale)
 
-    def search_locale_file(self, locale: str, key: str) -> tuple[list[str], LocaleFile] | None:
+    def search_locale_file(
+        self, locale: str, key: str
+    ) -> tuple[list[str], LocaleFile] | None:
         """Searchs for translations file.
 
         Args:
@@ -173,10 +183,15 @@ class Loader(AbcLoader):
             # 普通に指定されたキーのファイルをキャッシュから検索する。
             for tentative in filter(key.startswith, self.caches.file_[locale].keys()):
                 end_of_key = key.replace(tentative, "")
+
                 if end_of_key.startswith("."):
                     end_of_key = end_of_key[1:]
-                _, eok = self.caches.key_mapping[(locale, key)] \
-                    = (tentative, end_of_key.split("."))
+
+                _, eok = self.caches.key_mapping[(locale, key)] = (
+                    tentative,
+                    end_of_key.split("."),
+                )
+
                 return eok, self.caches.file_[locale][tentative]
 
         if self.do_not_search_file:
@@ -195,19 +210,20 @@ class Loader(AbcLoader):
             # ファイルかどうかをチェックする。
             for ext in self.EXTENSIONS:
                 path = path.with_suffix(ext)
+
                 if exists(path) or isfile(path):
                     # ファイルが存在したのなら、ロードを行う。
                     lf = self.load(path)
                     if self.use_cache_realtime:
                         self.caches.file_[locale][file_key[:-1]] = lf
-                    return keys[index+1:], lf
+                    return keys[index + 1 :], lf
             else:
                 break
 
     _TNF_T = "Not found text: %s"
+
     def search_impl(
-        self, locale: str, key: str,
-        default: type[Undefined] | SearchT = Undefined
+        self, locale: str, key: str, default: type[Undefined] | SearchT = Undefined
     ) -> str | SearchT:
         result = self.search_locale_file(locale, key)
         if result is None:

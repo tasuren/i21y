@@ -1,5 +1,3 @@
-"i21y - Translator"
-
 from __future__ import annotations
 
 __all__ = ("Translator",)
@@ -12,12 +10,15 @@ if TYPE_CHECKING:
 
 
 LoaderT = TypeVar("LoaderT", bound="Loader")
+
+
 class Translator(Generic[LoaderT]):
     """This class is for translation.
 
     Args:
         loader: It is for searching translations.
-        default_locale: It will be used for default locale. If you don't specify it, it will be set `en`."""
+        default_locale: It will be used for default locale. If you don't specify it, it will be set `en`.
+    """
 
     def __init__(self, loader: LoaderT | Loader, default_locale: str = "en") -> None:
         self.loader: LoaderT = cast(LoaderT, loader)
@@ -30,12 +31,19 @@ class Translator(Generic[LoaderT]):
             text: Target text.
             *args: The arguments to be passed to ``text.format``.
             **kwargs: The keyword arguments to be passed to ``text.format``."""
-        return text.format(*args, **kwargs) if kwargs.pop \
-            ("__i21y_special_kwarg_do_format", True) else text
+        return (
+            text.format(*args, **kwargs)
+            if kwargs.pop("__i21y_special_kwarg_do_format", True)
+            else text
+        )
 
     def translate(
-        self, key: str | locale_str, *args: Any, locale: str | None = None,
-        do_format: bool = True, **kwargs: Any
+        self,
+        key: str | locale_str,
+        *args: Any,
+        locale: str | None = None,
+        do_format: bool = True,
+        **kwargs: Any,
     ) -> str:
         """Do translation.
         The translation will be formated by :meth:`Translator.format_`.
@@ -56,12 +64,16 @@ class Translator(Generic[LoaderT]):
                 print(t("responses.not_found"))
 
         Raises:
-            TranslationNotFound: If translation is not found, this function will raise it."""
+            TranslationNotFound: If translation is not found, this function will raise it.
+        """
         kwargs["__i21y_special_kwarg_do_format"] = do_format
-        return self.format_(self.loader.search(
-            locale or self.default_locale,
-            key if isinstance(key, str) else str(key)
-        ), *args, **kwargs)
+        return self.format_(
+            self.loader.search(
+                locale or self.default_locale, key if isinstance(key, str) else str(key)
+            ),
+            *args,
+            **kwargs,
+        )
 
     def __call__(self, key: str | locale_str, *args: Any, **kwargs: Any) -> str:
         return self.translate(key, *args, **kwargs)

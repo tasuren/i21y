@@ -1,7 +1,5 @@
-"tasuren - i21y"
-
 __author__ = "Takagi Tasuku"
-__version__ = "0.1.2"
+__version__ = "0.2.2"
 __all__ = ("Translator", "I21YError", "TranslationNotFound", "locale_str")
 
 from .translator import Translator

@@ -1,17 +1,19 @@
-"i21y Loaders - YAML"
-
 __all__ = ("Loader",)
 
 from pathlib import PurePath
 
 try:
     from yaml import load
+
     try:
         from yaml import CLoader as YamlLoader
     except ImportError:
         from yaml import Loader as YamlLoader
 except ModuleNotFoundError as e:
-    raise ModuleNotFoundError("pyyaml is not installed. Please install `pyyaml` or `i21y[yaml]` by pip: %s" % e)
+    raise ModuleNotFoundError(
+        "pyyaml is not installed. Please install `pyyaml` or `i21y[yaml]` by pip: %s"
+        % e
+    )
 
 from .file_ import Loader as FileLoader, LocaleFile
 
