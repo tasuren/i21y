@@ -1,7 +1,6 @@
 # Contributing Guide
+This project is managed by the package manager PDM.
 ## Coding
-The style of the code is roughly in line with PEP8. Please keep the atmosphere of the code as much as possible.
+Use Black as a code formatter and pyright for type checking. The configuration is described in `pyproject.toml
 ## Commit message
-Put the verb of what you did first, followed by the details.
-And we would like it to contain 80 characters.
-Example: `fix: ループしないように変更。`
+Please write what you have done in a complete sentence and use the original form of the verb. e.g. `Fix that locale_str can't join.`
