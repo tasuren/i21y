@@ -30,10 +30,11 @@ LONG_KEY = locale_str("very.long.locale.key.yeah_so_long")
 print(LONG_KEY.but_easy_to_use) # very.long.locale.key.yeah_so_long.but_easy_to_use
 
 assert t(LONG_KEY.but_easy_to_use, locale="ja") == "とても長いキーでも簡単に使える。"
+assert t(LONG_KEY + "but_easy_to_use", locale="ja") == "とても長いキーでも簡単に使える。"
 ```
 
 ## Documentation
 See the [documentation](https://i21y.readthedocs.io/) for usage and details.
 
 ## License
-i21y is licensed under the [MIT license](https://github.com/tasuren/i21y/blob/main/LICENSE).
+i21y is licensed under the [MIT license](./LICENSE).
