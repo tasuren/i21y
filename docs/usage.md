@@ -49,11 +49,11 @@ from i21y import locale_str
 LOCALE = locale_str("main.http.general.responses")
 
 assert LOCALE.not_found == locale_str("http.general.responses.not_found")
-assert LOCALE / "not_found" == locale_str("http.general.responses.not_found")
+assert LOCALE + "not_found" == locale_str("http.general.responses.not_found")
 assert t(LOCALE.not_found, file_name="../secret.key") == "../secret.key is not found."
 
 assert str(LOCALE.not_found) == "http.general.responses.not_found"
-assert LOCALE // "not_found" == "http.general.responses.not_found"
+assert LOCALE & "not_found" == "http.general.responses.not_found"
 ```
 
 ## yaml support
