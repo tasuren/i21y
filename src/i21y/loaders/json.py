@@ -2,7 +2,8 @@ __all__ = ("Loader",)
 
 from pathlib import PurePath
 
-from .file_ import Loader as FileLoader, LocaleFile
+from .file_ import Loader as FileLoader
+from .file_ import LocaleFile
 
 try:
     from orjson import loads

@@ -65,14 +65,12 @@ class locale_str:
     @overload
     def join(
         self: ..., *other: str | locale_str, cls: type[AdtnlClsT], **extras: Any
-    ) -> AdtnlClsT:
-        ...
+    ) -> AdtnlClsT: ...
 
     @overload
     def join(
         self: SelfT, *other: str | locale_str, cls: None = None, **extras: Any
-    ) -> SelfT:
-        ...
+    ) -> SelfT: ...
 
     def join(
         self: SelfT,

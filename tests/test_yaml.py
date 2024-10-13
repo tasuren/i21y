@@ -1,5 +1,5 @@
-from src.i21y import Translator
-from src.i21y.loaders.yaml import Loader
+from i21y import Translator
+from i21y.loaders.yaml import Loader
 
 
 def do_test_translator(t: Translator[Loader]) -> None:

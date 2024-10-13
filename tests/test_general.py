@@ -1,12 +1,12 @@
-from src.i21y import Translator
-from src.i21y.loaders.json import Loader
+from i21y import Translator
+from i21y.loaders.json import Loader
 
 
 def do_test_translator(t: Translator[Loader]) -> None:
     assert t("general.main") == "main"
     assert t("general.main", locale="ja") == "メイン"
 
-    from src.i21y.utils import locale_str
+    from i21y.utils import locale_str
 
     BASE = locale_str("wow.a")
     assert t(BASE.b) == "Layor B"

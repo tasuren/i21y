@@ -30,8 +30,9 @@ class LocaleFile:
 
     def __init__(self, parent: Loader, locale: str, path: PurePath) -> None:
         self.parent, self.path, self.data = parent, path, DataDict()
-        self.locale, self.key = locale, ".".join(
-            self.path.parts[parent.path_size + 1 : -1] + (self.path.stem,)
+        self.locale, self.key = (
+            locale,
+            ".".join(self.path.parts[parent.path_size + 1 : -1] + (self.path.stem,)),
         )
 
     def get(self, key: str | Iterable[str]) -> str | None:

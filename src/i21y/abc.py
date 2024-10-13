@@ -22,12 +22,12 @@ class Loader(ABC):
     @overload
     def search(
         self, locale: str, key: str, default: type[Undefined] = Undefined
-    ) -> str:
-        ...
+    ) -> str: ...
 
     @overload
-    def search(self, locale: str, key: str, default: SearchT = Undefined) -> SearchT:
-        ...
+    def search(
+        self, locale: str, key: str, default: SearchT = Undefined
+    ) -> SearchT: ...
 
     def search(
         self, locale: str, key: str, default: SearchT | type[Undefined] = Undefined

@@ -15,7 +15,8 @@ except ModuleNotFoundError as e:
         % e
     )
 
-from .file_ import Loader as FileLoader, LocaleFile
+from .file_ import Loader as FileLoader
+from .file_ import LocaleFile
 
 
 class Loader(FileLoader):

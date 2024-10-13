@@ -2,52 +2,53 @@
 name = "i21y"
 description = "The simple library for i18n support."
 authors = [
-    {name = "Takagi Tasuku", email = "tasuren@outlook.jp"},
+    { name = "Takagi Tasuku", email = "tasuren@outlook.jp" },
 ]
-dependencies = []
-requires-python = ">=3.11"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 keywords = ["i18n"]
 classifiers = [
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.11",
     "Topic :: Software Development :: Internationalization",
     "Typing :: Typed"
 ]
-include = ["i21y/py.typed"]
+requires-python = ">=3.11"
+dependencies = []
 dynamic = ["version"]
 
-[tool.pdm]
-version = {source = "file", path = "src/i21y/__init__.py"}
+[project.optional-dependencies]
+yaml = ["pyyaml~=6.0"]
+fast_json = ["orjson~=3.10"]
+
+[tool.uv]
+dev-dependencies = [
+    "myst-parser>=4.0.0",
+    "pytest>=8.3.3",
+    "sphinx>=8.1.2",
+    "sphinx-intl>=2.2.0",
+    "ruff>=0.6.9",
+]
 
 [project.urls]
 Source = "https://github.com/tasuren/i21y"
 Documentation = "https://i21y.readthedocs.io/"
 Donate = "https://www.buymeacoffee.com/tasuren"
-Chat = "https://discord.gg/kfMwZUyGFG"
 
-[optional-dependencies]
-yaml = ["pyyaml~=6.0"]
-fast_json = ["orjson~=3.8.6"]
-
-[tool.pdm.dev-dependencies]
-test = [
-    "pytest~=7.1.2",
-    "pyyaml~=6.0",
-    "orjson~=3.8.6"
-]
-doc = [
-    "sphinx",
-    "sphinx-intl",
-    "myst-parser"
-]
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+testpaths = ["tests"]
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.pyright]
-typingCheckMode = "basic"
+[tool.hatch.version]
+path = "src/i21y/__init__.py"
 
-[tool.black]
-target-version = ['py311']
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/i21y"]

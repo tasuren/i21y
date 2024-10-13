@@ -1,5 +1,4 @@
-from src.i21y import locale_str
-
+from i21y import locale_str
 
 BASE = locale_str("aiueo")
 assert str(BASE) == "aiueo" and BASE.key == "aiueo"
