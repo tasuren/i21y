@@ -16,4 +16,5 @@ def do_test_translator(t: Translator[Loader]) -> None:
     assert t("main.a.b.f", locale="ja") == "エフ：ェクト"
 
 
-do_test_translator(Translator(Loader("tests/locale")))
+def test_yaml_translator() -> None:
+    do_test_translator(Translator(Loader("tests/locale")))
