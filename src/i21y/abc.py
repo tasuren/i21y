@@ -1,11 +1,11 @@
+from __future__ import annotations
+
 __all__ = ("Loader",)
 
+from abc import ABC, abstractmethod
 from typing import TypeVar, overload
 
-from abc import ABC, abstractmethod
-
 from .utils import Undefined
-
 
 SearchT = TypeVar("SearchT")
 

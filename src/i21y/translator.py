@@ -2,7 +2,7 @@ from __future__ import annotations
 
 __all__ = ("Translator",)
 
-from typing import TYPE_CHECKING, TypeVar, Generic, Any, cast
+from typing import TYPE_CHECKING, Any, Generic, TypeVar, cast
 
 if TYPE_CHECKING:
     from .abc import Loader

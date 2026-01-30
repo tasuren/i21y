@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 __all__ = ("I21YError", "TranslationNotFound")
 
 from typing import Any

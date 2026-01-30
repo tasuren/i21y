@@ -2,20 +2,18 @@ from __future__ import annotations
 
 __all__ = ("LocaleFile", "Loader")
 
-from typing import NamedTuple, TypeAlias, cast
-from collections.abc import Iterable
-
 from collections import defaultdict
+from collections.abc import Iterable
 from functools import cache
-
-from pathlib import PurePath
-from os.path import exists, isfile
 from os import walk
+from os.path import exists, isfile
+from pathlib import PurePath
+from typing import NamedTuple, TypeAlias, cast
 
-from ..abc import Loader as AbcLoader, SearchT
+from ..abc import Loader as AbcLoader
+from ..abc import SearchT
 from ..error import TranslationNotFound
 from ..utils import Undefined
-
 
 DataDict: TypeAlias = dict[str, "str | DataDict"]
 

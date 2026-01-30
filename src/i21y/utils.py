@@ -2,8 +2,8 @@ from __future__ import annotations
 
 __all__ = ("Undefined", "locale_str")
 
-from typing import TypeAlias, TypeVar, Any, overload
 from collections.abc import Iterable
+from typing import Any, TypeAlias, TypeVar, overload
 
 
 class Undefined:
@@ -110,11 +110,11 @@ class locale_str:
     def __getattr__(self: SelfT, another: str) -> SelfT:
         return self.join(another)
 
-    def __eq__(self, another: locale_str) -> bool:
-        return self.key == another.key
+    def __eq__(self, another: object) -> bool:
+        return isinstance(another, locale_str) and self.key == another.key
 
-    def __ne__(self, another: locale_str) -> bool:
-        return self.key != another.key
+    def __ne__(self, another: object) -> bool:
+        return not isinstance(another, locale_str) or self.key != another.key
 
     def __str__(self) -> str:
         return self.key
