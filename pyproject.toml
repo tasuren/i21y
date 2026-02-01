@@ -21,16 +21,16 @@ dynamic = ["version"]
 
 [dependency-groups]
 dev = [
-    "myst-parser>=4.0.0",
-    "pytest>=8.3.3",
-    "sphinx>=8.1.2",
-    "sphinx-intl>=2.2.0",
-    "ruff>=0.6.9",
+    "myst-parser>=5.0.0",
+    "pytest>=9.0.2",
+    "sphinx>=9.0.4",
+    "sphinx-intl>=2.3.2",
+    "ruff>=0.14.14",
 ]
 
 [project.optional-dependencies]
 yaml = ["pyyaml~=6.0"]
-fast_json = ["orjson~=3.10"]
+fast_json = ["orjson~=3.11.6"]
 
 [project.urls]
 Source = "https://github.com/tasuren/i21y"
