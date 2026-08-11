@@ -3,14 +3,14 @@ from __future__ import annotations
 __all__ = ("Undefined", "locale_str")
 
 from collections.abc import Iterable
-from typing import Any, TypeAlias, TypeVar, overload
+from typing import Any, Self, TypeVar, overload
 
 
 class Undefined:
     "This class is used to represent undefined."
 
 
-LocaleStr: TypeAlias = "str | locale_str"
+type LocaleStr = "str | locale_str"
 SelfT = TypeVar("SelfT", bound="locale_str")
 AdtnlClsT = TypeVar("AdtnlClsT", bound="locale_str")
 
@@ -64,20 +64,20 @@ class locale_str:
 
     @overload
     def join(
-        self: ..., *other: str | locale_str, cls: type[AdtnlClsT], **extras: Any
+        self, *other: str | locale_str, cls: type[AdtnlClsT], **extras: Any
     ) -> AdtnlClsT: ...
 
     @overload
     def join(
-        self: SelfT, *other: str | locale_str, cls: None = None, **extras: Any
-    ) -> SelfT: ...
+        self, *other: str | locale_str, cls: None = None, **extras: Any
+    ) -> Self: ...
 
     def join(
-        self: SelfT,
+        self,
         *other: str | locale_str,
         cls: type[AdtnlClsT] | None = None,
         **extras: Any,
-    ) -> SelfT | AdtnlClsT:
+    ) -> Self | AdtnlClsT:
         """A version of :meth:`locale_str.join_raw` that returns the instance of the class that self.
 
         Args:
@@ -89,7 +89,7 @@ class locale_str:
         assert cls is not None
         return cls(self.join_raw(*other), **extras)
 
-    def update_extras(self: SelfT, **extras: Any) -> SelfT:
+    def update_extras(self, **extras: Any) -> Self:
         """Function to gracefully update :attr:`.extras`.
 
         Args:
@@ -97,7 +97,7 @@ class locale_str:
         self.extras.update(**extras)
         return self
 
-    def __add__(self: SelfT, other: LocaleStr | Iterable[LocaleStr]) -> SelfT:
+    def __add__(self, other: LocaleStr | Iterable[LocaleStr]) -> Self:
         if isinstance(other, str | locale_str):
             other = (other,)
         return self.join(*other)
@@ -107,7 +107,7 @@ class locale_str:
             other = (other,)
         return self.join_raw(*other)
 
-    def __getattr__(self: SelfT, another: str) -> SelfT:
+    def __getattr__(self, another: str) -> Self:
         return self.join(another)
 
     def __eq__(self, another: object) -> bool:

@@ -2,17 +2,14 @@ from __future__ import annotations
 
 __all__ = ("Translator",)
 
-from typing import TYPE_CHECKING, Any, Generic, TypeVar, cast
+from typing import TYPE_CHECKING, Any, cast
 
 if TYPE_CHECKING:
     from .abc import Loader
     from .utils import locale_str
 
 
-LoaderT = TypeVar("LoaderT", bound="Loader")
-
-
-class Translator(Generic[LoaderT]):
+class Translator[LoaderT: Loader]:
     """This class is for translation.
 
     Args:

@@ -8,14 +8,14 @@ from functools import cache
 from os import walk
 from os.path import exists, isfile
 from pathlib import PurePath
-from typing import NamedTuple, TypeAlias, cast
+from typing import NamedTuple, cast
 
 from ..abc import Loader as AbcLoader
 from ..abc import SearchT
 from ..error import TranslationNotFound
 from ..utils import Undefined
 
-DataDict: TypeAlias = dict[str, "str | DataDict"]
+type DataDict = dict[str, "str | DataDict"]
 
 
 class LocaleFile:
@@ -27,7 +27,8 @@ class LocaleFile:
         path: The path to the file."""
 
     def __init__(self, parent: Loader, locale: str, path: PurePath) -> None:
-        self.parent, self.path, self.data = parent, path, DataDict()
+        self.parent, self.path = parent, path
+        self.data: DataDict = {}
         self.locale, self.key = (
             locale,
             ".".join(self.path.parts[parent.path_size + 1 : -1] + (self.path.stem,)),
