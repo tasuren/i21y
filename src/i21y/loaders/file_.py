@@ -4,7 +4,6 @@ __all__ = ("Loader", "LocaleFile")
 
 from collections import defaultdict
 from collections.abc import Iterable
-from functools import cache
 from os import walk
 from os.path import exists, isfile
 from pathlib import PurePath
@@ -157,7 +156,6 @@ class Loader(AbcLoader):
                 lf = self.load(PurePath(root).joinpath(file_name))
                 self.caches.file_[lf.locale][lf.key] = lf
 
-    @cache
     def get_locale_path(self, locale: str) -> PurePath:
         """Create an instance of :class:`pathlib.PurePath` representing the path to the folder where the translations are located.
 
