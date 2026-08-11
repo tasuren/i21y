@@ -13,8 +13,7 @@ try:
         from yaml import Loader as YamlLoader
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
-        "pyyaml is not installed. Please install `pyyaml` or `i21y[yaml]` by pip: %s"
-        % e
+        f"pyyaml is not installed. Please install `pyyaml` or `i21y[yaml]` by pip: {e}"
     )
 
 from .file_ import Loader as FileLoader
