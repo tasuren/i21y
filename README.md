@@ -51,9 +51,3 @@ See the [documentation](https://i21y.readthedocs.io/) for usage and details.
 ## License
 
 This project is licensed under the MIT License.
-
-## Contributing Guide
-
-This project is managed by the package manager uv.  
-In coding, please use Ruff as a code formatter and pyright for type checking. The configuration is described in `pyproject.toml`.  
-Please write what you have done in a complete sentence and use the original form of the verb. e.g. `Fix that locale_str can't join`.
