@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-__all__ = ("LocaleFile", "Loader")
+__all__ = ("Loader", "LocaleFile")
 
 from collections import defaultdict
 from collections.abc import Iterable
@@ -184,8 +184,7 @@ class Loader(AbcLoader):
             for tentative in filter(key.startswith, self.caches.file_[locale].keys()):
                 end_of_key = key.replace(tentative, "")
 
-                if end_of_key.startswith("."):
-                    end_of_key = end_of_key[1:]
+                end_of_key = end_of_key.removeprefix(".")
 
                 _, eok = self.caches.key_mapping[(locale, key)] = (
                     tentative,
@@ -217,8 +216,7 @@ class Loader(AbcLoader):
                     if self.use_cache_realtime:
                         self.caches.file_[locale][file_key[:-1]] = lf
                     return keys[index + 1 :], lf
-            else:
-                break
+            break
 
     _TNF_T = "Not found text: %s"
 
