@@ -1,6 +1,6 @@
 [project]
 name = "i21y"
-description = "The simple library for i18n support."
+description = "The simple library for i18n support with useful helpers."
 authors = [
     { name = "Takagi Tasuku", email = "tasuren@outlook.jp" },
 ]

@@ -5,7 +5,7 @@
 
 # i21y
 
-i21y (a.k.a internationalization.py) is library for support i18n in Python. It is easy to use.
+i21y (a.k.a internationalization.py) is library for support i18n in Python with useful helpers. It is easy to use.
 
 **Features:**
 
